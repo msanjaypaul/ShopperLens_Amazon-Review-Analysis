@@ -14,238 +14,465 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            line-height: 1.8;
+            color: #e5e5e5;
+            background-color: #0a0a0a;
+            background-image: url('background.jpg');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 107, 53, 0.3) 25%, 
+                transparent 50%, 
+                rgba(255, 140, 66, 0.2) 75%, 
+                transparent 100%);
+            background-size: 200% 200%;
+            pointer-events: none;
+            z-index: 1;
+            animation: movingLight 8s ease-in-out infinite;
+            mix-blend-mode: screen;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 1;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0a0a;
+            background-image: url('background.jpg');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeOutLoading 0.8s ease 1.5s forwards;
+        }
+
+        .loading-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.7);
+            z-index: 1;
+        }
+
+        .loading-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-logo {
+            width: 100px;
+            height: 100px;
+            animation: logoAppear 1.2s ease forwards;
+        }
+
+        .loading-logo img {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 2px;
+            background: #1a1a1a;
+            margin: 0 auto;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            width: 0;
+            animation: loadProgress 1.5s ease forwards;
+        }
+
+        ::selection {
+            background: #ff6b35;
+            color: white;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+            background: transparent;
             color: white;
-            padding: 80px 20px;
+            padding: 120px 20px;
             text-align: center;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
         }
+
+
 
         .logo-container {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         .logo-container img {
             width: 80px;
             height: 80px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: high-quality;
+            -ms-interpolation-mode: bicubic;
+            filter: drop-shadow(0 4px 12px rgba(255, 107, 53, 0.3));
+            opacity: 0;
+            animation: logoFadeIn 0.6s ease 2.3s forwards;
+        }
+
+        .logo-container h1 {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 2.2s forwards;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            animation: fadeInUp 1s ease;
+            font-size: 4.5rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            max-width: 900px;
         }
 
         .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s both;
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            color: #a0a0a0;
+            font-weight: 400;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 2.4s forwards;
         }
 
         .hero .description {
             font-size: 1.1rem;
-            max-width: 700px;
+            max-width: 650px;
             margin: 0 auto 50px;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.4s both;
+            color: #c0c0c0;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 2.6s forwards;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 18px 45px;
-            background: white;
-            color: #ff6b35;
+            padding: 16px 40px;
+            background: #ff6b35;
+            color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 1s ease 0.6s both;
+            border: 1px solid #ff6b35;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 2.8s forwards;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: #ff8c42;
+            border-color: #ff8c42;
+            transform: translateY(-2px);
         }
 
         /* Features Section */
         .features {
-            padding: 80px 20px;
-            background: #f8f9fa;
+            padding: 120px 20px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+            background-size: 40px 40px;
+            pointer-events: none;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: #333;
+            margin-bottom: 80px;
+            color: white;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2px;
+            background: #1a1a1a;
         }
 
         .feature-card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #0a0a0a;
+            padding: 50px 40px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            background: #111;
+            border-color: #ff6b35;
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            display: block;
+            filter: grayscale(0.3);
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #ff6b35;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: white;
+            font-weight: 600;
         }
 
         .feature-card p {
-            color: #666;
+            color: #a0a0a0;
             line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* How It Works Section */
         .how-it-works {
-            padding: 80px 20px;
-            background: white;
+            padding: 120px 20px;
+            background: rgba(17, 17, 17, 0.9);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #1a1a1a 10%, #1a1a1a 90%, transparent);
         }
 
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
         }
 
         .step {
-            text-align: center;
-            padding: 30px;
+            text-align: left;
+            padding: 0;
+            position: relative;
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+            width: 48px;
+            height: 48px;
+            background: #ff6b35;
             color: white;
-            border-radius: 50%;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 24px 0;
         }
 
         .step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: white;
+            font-weight: 600;
         }
 
         .step p {
-            color: #666;
+            color: #a0a0a0;
             line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* Benefits Section */
         .benefits {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+            padding: 120px 20px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
             color: white;
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            position: relative;
+        }
+
+        .benefits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .benefits .section-title {
             color: white;
+            position: relative;
+            z-index: 1;
         }
 
         .benefits-list {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: #1a1a1a;
+            position: relative;
+            z-index: 1;
         }
 
         .benefit-item {
-            padding: 25px;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
+            padding: 40px 32px;
+            background: #0a0a0a;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: #111;
+            border-color: rgba(255, 107, 53, 0.3);
         }
 
         .benefit-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .benefit-item p {
+            color: #a0a0a0;
+            line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* Footer CTA */
         .footer-cta {
-            padding: 80px 20px;
-            background: #f8f9fa;
+            padding: 120px 20px;
+            background: rgba(17, 17, 17, 0.9);
+            backdrop-filter: blur(10px);
             text-align: center;
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
         }
 
         .footer-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #333;
+            font-size: 3rem;
+            margin-bottom: 24px;
+            color: white;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
         .footer-cta p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 40px;
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Footer */
         footer {
-            background: #2d3748;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 30px 20px;
+            padding: 50px 20px;
             text-align: center;
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
         }
 
         footer p {
-            opacity: 0.8;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer p:first-child {
+            margin-bottom: 12px;
         }
 
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -253,27 +480,164 @@
             }
         }
 
+        /* Typing Animation */
+        .typing-text {
+            opacity: 1;
+        }
+
+        .typing-text span {
+            opacity: 0;
+            display: inline-block;
+        }
+
+        .typing-text.typing span {
+            animation: typeLetter 0.15s forwards;
+        }
+
+        @keyframes typeLetter {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes borderSnake {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            25% {
+                transform: translateX(200%) translateY(0);
+            }
+            50% {
+                transform: translateX(200%) translateY(200%);
+            }
+            75% {
+                transform: translateX(0) translateY(200%);
+            }
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+
+
+        @keyframes floatOrb {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            33% {
+                transform: translate(-45%, -55%) scale(1.1);
+            }
+            66% {
+                transform: translate(-55%, -45%) scale(0.9);
+            }
+        }
+
+        @keyframes fadeOutLoading {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+
+        @keyframes logoAppear {
+            0% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes logoFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .hero .tagline {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .section-title {
+                font-size: 2rem;
+                margin-bottom: 50px;
+            }
+
+            .features {
+                padding: 80px 20px;
+            }
+
+            .how-it-works {
+                padding: 80px 20px;
+            }
+
+            .benefits {
+                padding: 80px 20px;
+            }
+
+            .footer-cta {
+                padding: 80px 20px;
+            }
+
+            .footer-cta h2 {
                 font-size: 2rem;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .steps {
+                gap: 40px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-logo">
+            <img src="icon128.png" alt="ShopperLens">
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -292,7 +656,7 @@
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">Why Choose ShopperLens?</h2>
+            <h2 class="section-title typing-text">Why Choose ShopperLens?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🤖</div>
@@ -329,9 +693,9 @@
     </section>
 
     <!-- How It Works Section -->
-    <section class="how-it-works">
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <h2 class="section-title">How It Works</h2>
+            <h2 class="section-title typing-text">How It Works</h2>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
@@ -358,9 +722,9 @@
     </section>
 
     <!-- Benefits Section -->
-    <section class="benefits">
+    <section class="benefits" id="benefits">
         <div class="container">
-            <h2 class="section-title">Save Time & Shop Smarter</h2>
+            <h2 class="section-title typing-text">Save Time & Shop Smarter</h2>
             <div class="benefits-list">
                 <div class="benefit-item">
                     <h3>⏰ Save Hours of Research</h3>
@@ -385,11 +749,95 @@
     <!-- Footer CTA -->
     <section class="footer-cta">
         <div class="container">
-            <h2>Ready to Shop Smarter?</h2>
+            <h2 class="typing-text">Ready to Shop Smarter?</h2>
             <p>Join thousands of savvy shoppers using ShopperLens</p>
             <a href="https://chromewebstore.google.com/detail/shopperlens/nbghmjemlpliogjlongfnigmikkooalp" target="_blank" class="cta-button">Install ShopperLens Now</a>
         </div>
     </section>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Loading screen animation
+        window.addEventListener('DOMContentLoaded', () => {
+            const loadingScreen = document.querySelector('.loading-screen');
+            
+            // Make background transparent when logo starts floating
+            setTimeout(() => {
+                loadingScreen.classList.add('floating');
+            }, 1200);
+            
+            // Hide loading screen after float animation
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 2300);
+        });
+
+        // Typing animation on scroll
+        function wrapLetters(element) {
+            const text = element.textContent;
+            element.textContent = '';
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${index * 0.03}s`;
+                element.appendChild(span);
+            });
+        }
+
+        // Setup typing animation
+        const typingElements = document.querySelectorAll('.typing-text');
+        typingElements.forEach(el => wrapLetters(el));
+
+        // Intersection Observer for scroll-triggered typing
+        const typingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('typing')) {
+                    entry.target.classList.add('typing');
+                    console.log('Typing animation triggered for:', entry.target.textContent);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        typingElements.forEach(el => {
+            console.log('Observing element:', el);
+            typingObserver.observe(el);
+        });
+    </script>
 
     <!-- Footer -->
     <footer>
