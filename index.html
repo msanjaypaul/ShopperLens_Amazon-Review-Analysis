@@ -17,15 +17,21 @@
             line-height: 1.8;
             color: #e5e5e5;
             background-color: #0a0a0a;
-            background-image: url('background.jpg');
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
             position: relative;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
+            overflow-x: hidden;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 0;
+            object-fit: cover;
         }
 
         body::after {
@@ -69,10 +75,6 @@
             width: 100%;
             height: 100%;
             background-color: #0a0a0a;
-            background-image: url('background.jpg');
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -207,30 +209,35 @@
         .cta-button {
             display: inline-block;
             padding: 16px 40px;
-            background: #ff6b35;
+            background: rgba(10, 10, 10, 0.3);
+            backdrop-filter: blur(8px);
             color: white;
             text-decoration: none;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: 1px solid #ff6b35;
+            border: 2px solid #ff6b35;
             opacity: 0;
             animation: fadeInUp 0.6s ease 2.8s forwards;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
         }
 
         .cta-button:hover {
-            background: #ff8c42;
+            background: rgba(255, 107, 53, 0.2);
             border-color: #ff8c42;
             transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
         }
 
         /* Features Section */
         .features {
-            padding: 120px 20px;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 80px 20px;
+            margin: 60px auto;
+            max-width: 1600px;
+            background: transparent;
+            border: 3px solid rgba(255, 107, 53, 0.4);
+            border-radius: 16px;
             position: relative;
         }
 
@@ -266,18 +273,19 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2px;
-            background: #1a1a1a;
+            background: rgba(26, 26, 26, 0.3);
         }
 
         .feature-card {
-            background: #0a0a0a;
+            background: rgba(10, 10, 10, 0.3);
+            backdrop-filter: blur(8px);
             padding: 50px 40px;
             transition: all 0.3s ease;
             border: 1px solid transparent;
         }
 
         .feature-card:hover {
-            background: #111;
+            background: rgba(17, 17, 17, 0.4);
             border-color: #ff6b35;
         }
 
@@ -303,9 +311,12 @@
 
         /* How It Works Section */
         .how-it-works {
-            padding: 120px 20px;
-            background: rgba(17, 17, 17, 0.9);
-            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            margin: 60px auto;
+            max-width: 1600px;
+            background: transparent;
+            border: 3px solid rgba(255, 107, 53, 0.4);
+            border-radius: 16px;
             position: relative;
         }
 
@@ -329,8 +340,18 @@
 
         .step {
             text-align: left;
-            padding: 0;
+            padding: 40px;
             position: relative;
+            background: rgba(10, 10, 10, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: rgba(17, 17, 17, 0.4);
+            border-color: rgba(255, 107, 53, 0.3);
         }
 
         .step-number {
@@ -362,11 +383,13 @@
 
         /* Benefits Section */
         .benefits {
-            padding: 120px 20px;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            margin: 60px auto;
+            max-width: 1600px;
+            background: transparent;
             color: white;
-            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            border: 3px solid rgba(255, 107, 53, 0.4);
+            border-radius: 16px;
             position: relative;
         }
 
@@ -393,20 +416,21 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2px;
-            background: #1a1a1a;
+            background: rgba(26, 26, 26, 0.3);
             position: relative;
             z-index: 1;
         }
 
         .benefit-item {
             padding: 40px 32px;
-            background: #0a0a0a;
+            background: rgba(10, 10, 10, 0.3);
+            backdrop-filter: blur(8px);
             border: 1px solid transparent;
             transition: all 0.3s ease;
         }
 
         .benefit-item:hover {
-            background: #111;
+            background: rgba(17, 17, 17, 0.4);
             border-color: rgba(255, 107, 53, 0.3);
         }
 
@@ -425,11 +449,13 @@
 
         /* Footer CTA */
         .footer-cta {
-            padding: 120px 20px;
-            background: rgba(17, 17, 17, 0.9);
-            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            margin: 60px auto;
+            max-width: 1600px;
+            background: transparent;
             text-align: center;
-            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            border: 3px solid rgba(255, 107, 53, 0.4);
+            border-radius: 16px;
         }
 
         .footer-cta h2 {
@@ -451,8 +477,8 @@
 
         /* Footer */
         footer {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(8px);
             color: white;
             padding: 50px 20px;
             text-align: center;
@@ -620,7 +646,8 @@
             }
 
             .features {
-                padding: 60px 15px;
+                padding: 40px 15px;
+                margin: 30px 15px;
             }
 
             .feature-card {
@@ -628,7 +655,8 @@
             }
 
             .how-it-works {
-                padding: 60px 15px;
+                padding: 40px 15px;
+                margin: 30px 15px;
             }
 
             .how-it-works::before {
@@ -640,8 +668,13 @@
                 grid-template-columns: 1fr;
             }
 
+            .step {
+                padding: 32px 24px;
+            }
+
             .benefits {
-                padding: 60px 15px;
+                padding: 40px 15px;
+                margin: 30px 15px;
             }
 
             .benefit-item {
@@ -649,7 +682,8 @@
             }
 
             .footer-cta {
-                padding: 60px 15px;
+                padding: 40px 15px;
+                margin: 30px 15px;
             }
 
             .footer-cta h2 {
@@ -679,6 +713,11 @@
     </style>
 </head>
 <body>
+    <!-- Background Video -->
+    <video id="bg-video" autoplay loop muted playsinline>
+        <source src="Background video.mp4" type="video/mp4">
+    </video>
+
     <!-- Loading Screen -->
     <div class="loading-screen">
         <div class="loading-logo">
