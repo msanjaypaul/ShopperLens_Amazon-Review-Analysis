@@ -873,9 +873,9 @@
             });
         });
 
-        // Loading screen fades automatically via CSS animation
-
-        //  const text = element.textContent;
+        // Typing animation on scroll
+        function wrapLetters(element) {
+            const text = element.textContent;
             element.textContent = '';
             text.split('').forEach((char, index) => {
                 const span = document.createElement('span');
